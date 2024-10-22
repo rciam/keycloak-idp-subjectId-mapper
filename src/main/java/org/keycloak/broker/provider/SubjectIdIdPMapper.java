@@ -53,7 +53,7 @@ public class SubjectIdIdPMapper extends AbstractIdentityProviderMapper {
         property = new ProviderConfigProperty();
         property.setName(USER_ATTRIBUTE);
         property.setLabel("Subject Id Attribute Name");
-        property.setHelpText("User attribute name to store the Subject Identifier for the user. Defaults to 'username'");
+        property.setHelpText("User attribute name to store the Subject Identifier for the user. Defaults to 'username'.");
         property.setDefaultValue(USERNAME);
         property.setType(ProviderConfigProperty.STRING_TYPE);
         configProperties.add(property);
@@ -61,7 +61,7 @@ public class SubjectIdIdPMapper extends AbstractIdentityProviderMapper {
         property = new ProviderConfigProperty();
         property.setName(SCOPE);
         property.setLabel("Scope");
-        property.setHelpText("Append a @scope value.");
+        property.setHelpText("Append a '@' + scope value. Defaults to 'example.org'.");
         property.setType(ProviderConfigProperty.STRING_TYPE);
         configProperties.add(property);
 
@@ -120,7 +120,7 @@ public class SubjectIdIdPMapper extends AbstractIdentityProviderMapper {
 
     @Override
     public String getHelpText() {
-        return "Generate a new Subject Identifier attribute according to OASIS Subject-ID to be used as a unique identifier for the user. The mapper works only in import sync mode. Any other sync mode will be ignored";
+        return "Generates a Subject Identifier with a random unique ID and a configurable scope, separated by '@'. Defaults to the 'username' attribute. Works only in 'import' sync mode; other modes are ignored.";
     }
 
 
