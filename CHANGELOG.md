@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 It is based on Keycloak version 22.
 
+## [1.1.0] - 2024-10-23
+
+### Added
+- Check for unique subject id
+
 ## [1.0.0] - 2024-10-22
 
 ### Added

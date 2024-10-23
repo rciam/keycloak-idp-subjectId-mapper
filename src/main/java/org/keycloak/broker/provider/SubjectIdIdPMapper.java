@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -67,7 +68,7 @@ public class SubjectIdIdPMapper extends AbstractIdentityProviderMapper {
 
     }
 
-    public static final String PROVIDER_ID = "subject-id-idp-mapper";
+    public static final String PROVIDER_ID = "subject-id-attribute-mapper";
 
     @Override
     public boolean supportsSyncMode(IdentityProviderSyncMode syncMode) {
@@ -105,10 +106,14 @@ public class SubjectIdIdPMapper extends AbstractIdentityProviderMapper {
 
         String scope = mapperModel.getConfig().getOrDefault(SCOPE, DEFAULT_SCOPE);
         String attribute = mapperModel.getConfig().getOrDefault(USER_ATTRIBUTE, USERNAME);
+        String value = KeycloakModelUtils.generateId() + "@" + scope;
+        while (session.users().searchForUserStream(realm, Map.of(attribute,value,UserModel.EXACT, "true")).count() >0) {
+            value = KeycloakModelUtils.generateId() + "@" + scope;
+        }
         if (USERNAME.equalsIgnoreCase(attribute)) {
-            context.setUsername(KeycloakModelUtils.generateId() + "@" + scope);
+            context.setUsername(value);
         } else {
-            context.setUserAttribute(attribute, KeycloakModelUtils.generateId() + "@" + scope);
+            context.setUserAttribute(attribute, value);
         }
     }
 
