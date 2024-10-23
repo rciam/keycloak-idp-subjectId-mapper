@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.keycloak</groupId>
-    <artifactId>keycloak-idp-subjectId-mapper</artifactId>
+    <artifactId>keycloak-subject-id-attribute-mapper</artifactId>
     <version>1.1.0</version>
 
     <properties>
